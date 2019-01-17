@@ -1,10 +1,9 @@
-**Please mail me if any: dmytro.vasin@gmail.com**
+
 
 ---
 
 # CCBill SDK for Ruby
 
-[![Circle CI](https://circleci.com/gh/DmytroVasin/ccbill_ruby.svg?style=shield)](https://circleci.com/gh/DmytroVasin/ccbill_ruby)
 
 Unofficial CCBill SDK for Ruby.
 
@@ -149,7 +148,6 @@ Before reading this part - please read [Setup guide](#setup-guide)
 
 ### TL; DR;
 
-![A representation of how CCBill Webhooks work](https://raw.githubusercontent.com/DmytroVasin/ccbill_ruby/master/images/webhooks_diagram.png)
 
 - On the Site User clicks by generated link. After that user will be redirect to the `payment form`
 - The `payment form` is the CCBill form that will be displayed to customers after they choose to check out using CCBill. The `payment form` accepts customer payment information
@@ -202,8 +200,6 @@ Customer will follow by this path if his transaction will be approved. You can f
 
 **Deny Path**<br/>
 This is the path consumers take when they are declined on a transaction. They will be redirected to the deny path to try again. The Deny Tile is always to the right of the Primary Tile.
-
-![Approval and Deny paths](https://raw.githubusercontent.com/DmytroVasin/ccbill_ruby/master/images/approval-and-deny.png)
 
 
 ### Step 3:
@@ -289,19 +285,13 @@ The following CCBill settings must be correct for the payment module to work cor
 
 Please work with your CCBill support representative to activate Dynamic Pricing for your account ( sub-account ). You can verify that Dynamic Pricing is active at **Account Info** > **Manage the subaccount menu** > **Pick 0000 subaccount from select menu** > **Feature Summary** at the bottom. in the Admin Portal. Your Dynamic Pricing status appears at the bottom of the **Billing Tools** section.
 
-![Billing Tools](https://raw.githubusercontent.com/DmytroVasin/ccbill_ruby/master/images/billing_tools.png)
-
 Please note that if Dynamic Pricing is enabled on the subaccount level, ALL signup forms on that subaccount must use Dynamic Pricing in order to function correctly. This includes forms created on the subaccount prior to Dynamic Pricing being enabled. If Dynamic Pricing is enabled only on a particular form and not the entire subaccount, other forms on that subaccount will not be required to use Dynamic Pricing.
-
-![Dynamic Pricing](https://raw.githubusercontent.com/DmytroVasin/ccbill_ruby/master/images/dynamic-price.png)
 
 ### Creating a Salt / Encryption Key
 
 A "salt" is a string of random data used to make your encryption more secure. **Sub Account Admin** > **Advanced**. It will appear in the **Encryption Key** field of the **Upgrade Security Setup Information section**.
 
 Make note of the Salt: this value will be entered into the your configuration file. ( `config/initializers/ccbill.rb` )
-
-![ENCRYPTION KEY](https://raw.githubusercontent.com/DmytroVasin/ccbill_ruby/master/images/encryption_key.png)
 
 ### Disabling User Management
 
@@ -312,7 +302,6 @@ Since this sub-account will be used for Dynamic Pricing transactions (not managi
 - Select **Turn off User Management** in the top section.
 - Select **Do Not Collect Usernames and Passwords** in the **Username Settings** section.
 
-![Disabling User Management](https://raw.githubusercontent.com/DmytroVasin/ccbill_ruby/master/images/disabling_user_management.png)
 
 ### Creating a New FlexForms Payment Form
 Here is standart [Getting Started with Flex Froms](https://kb.ccbill.com/FlexForms+Quick+Start+Guide).
@@ -336,7 +325,6 @@ Here is standart [Getting Started with Flex Froms](https://kb.ccbill.com/FlexFor
 > 2. This is URLS ( GET ) will be used to specify where CCBill should redirect User after success/deny payment.
 > 3. We set `mppResponse=CheckoutSuccess` and `mppResponse=CheckoutFail` because we use this attribute at `callbacks/ccbills#show` action to determine kind of response (success/fail).
 
-![URLs Editor](https://raw.githubusercontent.com/DmytroVasin/ccbill_ruby/master/images/url_editor.png)
 
 #### Create a New FlexForm
 
@@ -364,8 +352,6 @@ Here is standart [Getting Started with Flex Froms](https://kb.ccbill.com/FlexFor
 > Important:
 > Do not create alot of FlexForm's. You can't delete them!
 
-![Deny Path](https://raw.githubusercontent.com/DmytroVasin/ccbill_ruby/master/images/redirect_path.png)
-
 
 #### Webhooks
 
@@ -376,8 +362,6 @@ Make sure to check 'all' check boxes on this page and pick JSON Webhook Format<b
 Note: That will be `POST` request.<br>
 In our case It will call `callbacks/ccbills#create` action.<br>
 In this action based on params we will find-out what request was called.
-
-![Webhook information](https://raw.githubusercontent.com/DmytroVasin/ccbill_ruby/master/images/webhooks.png)
 
 **:sparkles: Your CCBill account is now configured :sparkles:**
 
@@ -491,18 +475,6 @@ Then your code will looks like that:
 > You must turn on Multi-sign feature for the first subaccount ( subaccount for subscriptions )!
 > Otherwise you will receive exception for second and subsequent subscriptions.
 
-
-# Useful Links:
-* [Dynamic Pricing](https://kb.ccbill.com/Dynamic+Pricing)
-* [FlexForm FAQs](https://kb.ccbill.com/FlexForms+FAQs)
-* [FlexForms Quick Start Guide](https://kb.ccbill.com/FlexForms+Quick+Start+Guide)
-* [FlexForms Sandbox](https://kb.ccbill.com/FlexForms+Sandbox?page_ref_id=452)
-* [FlexForms Form Status and Live Mode](https://kb.ccbill.com/FlexForms+Form+Status+and+Live+Mode?page_ref_id=453)
-* [Test Transactions and Credit Cards](https://kb.ccbill.com/How+do+I+set+up+a+user+to+process+test+transactions)
-* [CCBill Webhooks](https://kb.ccbill.com/Webhooks)
-* [Webhooks - prefil variables](https://kb.ccbill.com/Webhooks+User+Guide#Payment_Form)
-* [Price Minimums and Maximums](https://kb.ccbill.com/Price+Minimums+and+Maximums)
-* [Responses](https://github.com/DmytroVasin/ccbill_ruby/tree/master/responses)
 
 # License
 
